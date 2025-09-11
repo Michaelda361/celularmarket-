@@ -1,0 +1,73 @@
+@model CelularesMarket.Models.BalanceViewModel
+
+@{
+    ViewData["Title"] = "Balance";
+}
+
+<h1>Balance de Operaciones</h1>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>Celulares Ingresados</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Marca</th>
+                    <th>Modelo</th>
+                    <th>IMEI</th>
+                    <th>Precio</th>
+                    <th>Estado</th>
+                    <th>En Venta</th>
+                    <th>Fecha de Publicación</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var celular in Model.Celulares)
+                {
+                    <tr>
+                        <td>@celular.Marca</td>
+                        <td>@celular.Modelo</td>
+                        <td>@celular.IMEI</td>
+                        <td>@celular.Precio.ToString("C")</td>
+                        <td>@celular.Estado</td>
+                        <td>@(celular.EnVenta ? "Sí" : "No")</td>
+                        <td>@celular.FechaPublicacion.ToShortDateString()</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>Ventas Realizadas</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Celular</th>
+                    <th>Cliente</th>
+                    <th>Documento</th>
+                    <th>Precio de Venta</th>
+                    <th>Fecha de Venta</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var venta in Model.Ventas)
+                {
+                    <tr>
+                        <td>@(venta.Celular != null ? $"{venta.Celular.Marca} {venta.Celular.Modelo}" : "N/A")</td>
+                        <td>@venta.NombreCliente</td>
+                        <td>@venta.DocumentoCliente</td>
+                        <td>@venta.PrecioVenta.ToString("C")</td>
+                        <td>@venta.FechaVenta.ToShortDateString()</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

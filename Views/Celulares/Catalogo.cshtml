@@ -1,0 +1,23 @@
+@model CelularesMarket.Models.CatalogoViewModel
+<h2>Catálogo de Celulares para Venta</h2>
+<div class="row">
+    @foreach (var item in Model.Celulares)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <img src="@item.ImagenUrl" class="card-img-top" alt="Imagen" style="height:200px;object-fit:cover;" />
+                <div class="card-body">
+                    <h5 class="card-title">@item.Marca @item.Modelo</h5>
+                    <p class="card-text">
+                        <strong>Precio:</strong> @item.Precio.ToString("C")<br />
+                        <strong>Estado:</strong> @item.Estado
+                    </p>
+                    <a class="btn btn-success me-2" asp-action="Venta" asp-route-id="@item.Id">Vender</a>
+                    <a class="btn btn-info" asp-action="Details" asp-route-id="@item.Id">Ver</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+

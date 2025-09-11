@@ -1,0 +1,87 @@
+@if (!ViewData.ModelState.IsValid && ViewData.ModelState.Values.Any(v => v.Errors.Count > 0))
+{
+    <div class="alert alert-danger">
+        <ul>
+        @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+        {
+            <li>@error.ErrorMessage</li>
+        }
+        </ul>
+    </div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+@model CelularesMarket.Models.Celular
+
+@{
+    ViewData["Title"] = "Editar Celular";
+}
+
+<h2>Editar Celular</h2>
+
+<form asp-action="Edit" enctype="multipart/form-data" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-group">
+        <label asp-for="Marca" class="control-label"></label>
+        <input asp-for="Marca" class="form-control" />
+        <span asp-validation-for="Marca" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Modelo" class="control-label"></label>
+        <input asp-for="Modelo" class="form-control" />
+        <span asp-validation-for="Modelo" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="IMEI" class="control-label"></label>
+        <input asp-for="IMEI" class="form-control" />
+        <span asp-validation-for="IMEI" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Precio" class="control-label"></label>
+        <input asp-for="Precio" class="form-control" />
+        <span asp-validation-for="Precio" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Estado" class="control-label"></label>
+        <select asp-for="Estado" class="form-control" asp-items="Html.GetEnumSelectList<EstadoCelular>()"></select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Descripcion" class="control-label"></label>
+        <textarea asp-for="Descripcion" class="form-control"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="EnVenta" class="control-label"></label>
+        <input asp-for="EnVenta" type="checkbox" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="FechaPublicacion" class="control-label"></label>
+        <input asp-for="FechaPublicacion" class="form-control" type="date" />
+    </div>
+
+    <div class="form-group">
+        @if (!string.IsNullOrEmpty(Model.ImagenUrl))
+        {
+            <label class="control-label">Imagen actual</label>
+            <div class="mt-2">
+                <img src="@Model.ImagenUrl" alt="Imagen actual" width="150" />
+            </div>
+        }
+    </div>
+
+    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

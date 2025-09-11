@@ -1,0 +1,21 @@
+@model CelularesMarket.Models.Celular
+
+@{
+    ViewData["Title"] = "Detalles del Celular";
+}
+
+<h2>Detalles del Celular</h2>
+
+<div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="@Model.ImagenUrl" alt="Imagen">
+    <div class="card-body">
+        <h5 class="card-title">@Model.Marca @Model.Modelo</h5>
+        <p class="card-text">@Model.Descripcion</p>
+        <p><strong>IMEI:</strong> @Model.IMEI</p>
+        <p><strong>Precio:</strong> @Model.Precio.ToString("C")</p>
+        <p><strong>Estado:</strong> @Model.Estado</p>
+        <p><strong>Publicado:</strong> @Model.FechaPublicacion.ToShortDateString()</p>
+    </div>
+</div>
+
+<a class="btn btn-secondary mt-3" asp-action="Catalogo">Volver</a>

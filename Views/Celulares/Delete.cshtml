@@ -1,0 +1,26 @@
+@model CelularesMarket.Models.Celular
+
+@{
+    ViewData["Title"] = "Eliminar Celular";
+}
+
+<h2>¿Seguro que deseas eliminar este celular?</h2>
+
+<div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="@Model.ImagenUrl" alt="Imagen">
+    <div class="card-body">
+        <h5 class="card-title">@Model.Marca @Model.Modelo</h5>
+        <p><strong>Precio:</strong> @Model.Precio.ToString("C")</p>
+    </div>
+</div>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger mt-3">Eliminar</button>
+    <a asp-action="Index" class="btn btn-secondary mt-3">Cancelar</a>
+
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

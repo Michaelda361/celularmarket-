@@ -1,0 +1,41 @@
+@model IEnumerable<CelularesMarket.Models.Celular>
+
+@{
+    ViewData["Title"] = "Lista de Celulares";
+}
+
+<h2 class="mb-3">Celulares en Venta</h2>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Agregar Celular</a>
+</p>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Imagen</th>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Precio</th>
+            <th>Estado</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td><img src="@item.ImagenUrl" alt="Imagen" width="80"/></td>
+            <td>@item.Marca</td>
+            <td>@item.Modelo</td>
+            <td>@item.Precio.ToString("C")</td>
+            <td>@item.Estado</td>
+            <td>
+                <a class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@item.Id">Ver</a>
+                <a class="btn btn-warning btn-sm" asp-action="Edit" asp-route-id="@item.Id">Editar</a>
+                <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
