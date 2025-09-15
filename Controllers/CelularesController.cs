@@ -12,9 +12,12 @@
 
 
 
+using Microsoft.AspNetCore.Authorization;
+
 namespace CelularesMarket.Controllers
 {
-	public class CelularesController : Controller
+    [Authorize]
+    public class CelularesController : Controller
 	{
 		private readonly ApplicationDbContext _context;
 		private readonly IWebHostEnvironment _env;

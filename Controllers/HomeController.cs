@@ -1,9 +1,11 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using CelularesMarket.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CelularesMarket.Controllers;
 
+[Authorize]
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;

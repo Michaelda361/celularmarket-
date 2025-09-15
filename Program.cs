@@ -1,4 +1,6 @@
 using CelularesMarket.Data;
+using CelularesMarket.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +11,10 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
         builder.Configuration.GetConnectionString("DefaultConnection"),
         ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection"))
     ));
+
+// Configuración de Identity
+builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
+    .AddEntityFrameworkStores<ApplicationDbContext>();
 
 // Controladores y vistas con compilación en caliente
 builder.Services.AddControllersWithViews()
@@ -30,6 +36,8 @@ app.UseRouting();
 
 app.UseAuthentication(); // 👈 importante
 app.UseAuthorization();
+
+app.MapRazorPages();
 
 // Ruta por defecto → Celulares/Index
 app.MapControllerRoute(

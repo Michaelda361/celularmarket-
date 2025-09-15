@@ -1,0 +1,22 @@
+# Dependencies
+[Dd]ependencies/
+[Pp]ackages/
+
+# Tooling
+[Tt]ools/
+
+# Build results
+[Bb]in/
+[Oo]bj/
+
+# Visual Studio temporary files
+.vs/
+*.suo
+*.user
+*.sln.docstates
+
+# Rider temporary files
+.idea/
+
+# User-specific files
+*.DS_Store
